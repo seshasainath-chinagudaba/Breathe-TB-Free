@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Your existing CSS here */
+        :root {
+            --text-color: white;
+            --background-color: #000000;
+        }
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        .logo {
+            height: 40px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: var(--background-color);
+        }
+        .navbar a {
+            margin-right: 15px;
+        }
+        .hero {
+            height: 100vh;
+            background: url('https://img.freepik.com/premium-photo/cute-newborn-baby-sleeping-mother-arms-close-up-loving-mother-carries-her-newborn-baby-home-portrait-happy-mother-holding-sleeping-baby_79075-34930.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2em;
+            transition: all 0.5s ease;
+        }
+        @media only screen and (max-width: 600px) {
+            .hero {
+                font-size: 1em;
+            }
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-attachment: fixed;
+        }
+        #about {
+            background: url('https://i.pinimg.com/originals/a7/b7/09/a7b709db2e6102131ab4aad93addc96c.jpg') no-repeat center center/cover;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .box {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 25px;
+            padding: 20px;
+            margin: 20px;
+            color: var(--text-color);
+            width: 40%;
+            align-self: flex-start;
+        }
+        .box:nth-child(2) {
+            align-self: flex-end;
+        }
+        #login {
+            background: url('https://i.pinimg.com/originals/a7/b7/09/a7b709db2e6102131ab4aad93addc96c.jpg') no-repeat center center/cover;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#home").show();
+            $('a').on('click', function(event) {
+                event.preventDefault();
+                $(".content").hide();
+                var page = this.href.split('#')[1];
+                $("#" + page).fadeIn(1000);
+            });
+
+            var idleTime = 0;
+            var idleInterval = setInterval(timerIncrement, 60000);
+
+            $(this).mousemove(function (e) {
+                idleTime = 0;
+            });
+
+            function timerIncrement() {
+                idleTime = idleTime + 1;
+                if (idleTime > 4) {
+                    logout();
+                }
+            }
+
+            function logout() {
+                $('a[href="#login"]').text('Login');
+                alert('You have been logged out due to inactivity.');
+            }
+
+            function login() {
+                var username = $('#username').val();
+                var password = $('#password').val();
+
+                if (username == 'sairam' && password == 'sairam') {
+                    $('a[href="#login"]').text('Logout');
+                    alert('You have been successfully logged in.');
+                    $(".content").hide();
+                    $("#home").fadeIn(1000);
+                    $('.navbar div').append('<a href="#predict">Predict</a>');
+                } else {
+                    alert('Invalid credentials. Please try again.');
+                }
+            }
+
+            $('#login-form').on('submit', function(e) {
+                e.preventDefault();
+                login();
+            });
+
+            // Add this block inside the $(document).ready(function(){...});
+            $('#predict-form').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '/predict',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#prediction-result').html(response);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#home"><img src="https://t4.ftcdn.net/jpg/04/96/47/13/360_F_496471319_DbtjoUvKqyy2e9OfgBnK5mm2AXhKpa9m.jpg" alt="Logo" class="logo"></a>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#register">Register with us</a>
+            <a href="#login">Login</a>
+            <!-- Add this line for the Predict tab -->
+            <a href="#predict">Predict</a>
+        </div> 
+    </nav>
+    <div id="home" class="content hero">
+        <h1>Welcome to Apple</h1>
+    </div>
+    <div id="about" class="content">
+        <h1>About Us</h1>
+        <div class="box">
+            <p>This is where you would put information about your company.</p>
+        </div>
+        <div class="box">
+            <p>This is another box where you can put more information about your company.</p>
+        </div>
+    </div>
+    <div id="login" class="content">
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <!-- Add this block for the Predict content -->
+    <div id="predict" class="content">
+        <h1>Predict</h1>
+        <form id="predict-form">
+            <!-- Add the necessary input fields for the prediction form -->
+            <label for="DiagnosingFacilityState">Diagnosing Facility State:</label><br>
+            <input type="text" id="DiagnosingFacilityState" name="DiagnosingFacilityState"><br>
+
+            <label for="DiagnosingFacilityDistrict">Diagnosing Facility District:</label><br>
+            <input type="text" id="DiagnosingFacilityDistrict" name="DiagnosingFacilityDistrict"><br>
+
+            <!-- Add more input fields as needed -->
+
+            <input type="submit" value="Predict">
+        </form>
+        <div id="prediction-result">
+            <!-- Placeholder for prediction results -->
+        </div>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            var scrollPosition = window.scrollY;
+            var heroElement = document.getElementById('home');
+            var heroText = heroElement.querySelector('h1');
+
+            if (scrollPosition <= window.innerHeight / 2) {
+                heroText.style.opacity = 1 - scrollPosition / (window.innerHeight / 2);
+            } else {
+                heroText.style.opacity = 0;
+            }
+        });
+    </script>
+</body>
+</html>

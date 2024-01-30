@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://us.123rf.com/450wm/masharinka/masharinka2306/masharinka230600097/207355710-lungs-human-in-blooming-garden-ecology-art-breath-of-planet-earth-ai-generated.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .prescription {
+            background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
+            border: 2px solid #000;
+            border-radius: 15px; /* Adjust the border-radius as needed for smooth edges */
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow for depth */
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .improvement {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="prescription">
+        <h1>Doctor's Prescription</h1>
+        <p><strong>Patient ID:</strong> {{ patient_id }}</p>
+        <p><strong>Previous Result:</strong> {{ existing_result }}</p>
+        <p><strong>New Result:</strong> {{ new_result }}</p>
+        <p class="improvement"><strong>Improvement:</strong> {{ improvement }}</p>
+        <!-- You can add more prescription-style information here -->
+    </div>
+</body>
+</html>

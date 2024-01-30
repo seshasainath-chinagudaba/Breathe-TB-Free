@@ -174,7 +174,7 @@ def predict():
         # Render a message for new patient ID
         return f'<h1>Result</h1><p>New patient ID, data saved.</p>'
 if __name__ == '__main__':
-    app.run(debug=True)   
+    app.run( host='0.0.0.0', port=80)   
 #     if existing_data.exists:
 #         # Patient ID exists, retrieve the existing data
 #         existing_data = existing_data.to_dict()

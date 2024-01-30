@@ -35,10 +35,22 @@
             font-size: 2em;
             transition: all 0.5s ease;
         }
+        .hero2 {
+            height: 100vh;
+            background: url('https://st5.depositphotos.com/9800054/64389/i/600/depositphotos_643890090-stock-photo-human-lungs-made-tree-branches.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 1em;
+            transition: all 0.5s ease;
+        }
         @media only screen and (max-width: 600px) {
             .hero {
                 font-size: 1em;
             }
+            
         }
         .content {
             display: flex;
@@ -111,7 +123,7 @@
             overflow: auto; /* This will allow the text to scroll */
             display: flex;
             /* flex-direction: column; */
-            justify-content: space-around;
+            justify-content: flex-end;
             align-items: center;
             height: 100vh; /* Set the height to 100vh to match the Home page */
             flex-grow: 2;
@@ -299,10 +311,10 @@
             <a href="#login">Login</a>
         </div> 
     </nav>
-        <div id="home" class="content hero">
-            <h1 style="color: rgba(255, 204, 0, 0.8); font-size: 3em; opacity: 1;">BreathePro</h1>
+        <div id="home" class="content hero2">
+            <h1 style="color: rgba(255, 204, 0, 0.8); font-size: 9em; opacity: 1; margin-left: 3%;">BreathePro</h1>
             <div id="login-extra" class="content">
-                <div id="login-form-container">
+                <div id="login-form-container" style="margin-right:3%; font-size: 1.5em;">
                     <h1>Signin</h1>
                     <form id="login-form">
                         <label for="username">Username:</label><br>

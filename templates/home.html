@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <title>Your Website Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <style>
         /* Your existing CSS here */
         :root {
@@ -15,6 +22,8 @@
         .logo {
             height: 40px;
         }
+        
+
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -46,41 +55,99 @@
             font-size: 1em;
             transition: all 0.5s ease;
         }
+        /* General styles for larger screens (default) */
+        /* Add your default styles here */
+
+        /* Media query for screens with a maximum width of 600 pixels (mobile) */
         @media only screen and (max-width: 600px) {
-            .hero {
+            /* Navbar styles for mobile */
+            .navbar-nav.ml-auto {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navbar-nav.ml-auto a {
+                margin: 10px 0;
+            }
+
+            /* Login form styles for mobile */
+            #login-form-container {
+                width: 90%;
+            }
+            #login-form-container h1 {
+                font-size: 2em;
+            }
+            #login-form input,
+            #login-form button {
                 font-size: 1em;
             }
-            
+
+            /* About section styles for mobile */
+            #about .about-content {
+                max-width: 90%;
+                padding: 15px;
+            }
+            #about .about-content h1 {
+                font-size: 1.5em;
+            }
+            #about .about-content p {
+                font-size: 1em;
+            }
+
+            /* Home section styles for mobile */
+            #home {
+                padding: 10px; /* Adjust padding as needed */
+                text-align: center; /* Center text and elements within #home */
+            }
+            #home h1 {
+                font-size: 1.5em;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            #home img {
+                max-width: 100%;
+                height: auto;
+                display: block; /* Ensure it behaves as a block element */
+                margin: 0 auto; /* Center the image */
+            }
+
+            /* Hide the login-extra on mobile devices */
+            #login-extra {
+                display: none;
+            }
         }
+
+
+
+
         .content {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
             height: 100vh; /* This will make the content take up the full viewport height */
             text-align: center;
-           /* background-attachment: fixed;  This will fix the background image */
+            /* background-attachment: fixed;  This will fix the background image */
         }
         /* Add this CSS code to your existing styles */
 
-            #about {
-                background: url("https://img.freepik.com/premium-photo/world-tuberculosis-day-represented-by-paper-lung-cut-out-pastel-background-signifies-awarenes_908985-78602.jpg") no-repeat center center/cover;
-                overflow: auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                position: relative;
-            }
+        #about {
+            background: url("https://img.freepik.com/premium-photo/world-tuberculosis-day-represented-by-paper-lung-cut-out-pastel-background-signifies-awarenes_908985-78602.jpg") no-repeat center center/cover;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
 
         .about-content {
-                background-color: rgba(255, 255, 255, 0.7);
-                border-radius: 15px;
-                padding: 30px;
-                margin: 20px;
-                color: #333;
-                text-align: center;
-                max-width: 70%;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px;
+            color: #333;
+            text-align: center;
+            max-width: 70%;
         }
 
         .about-content h1 {
@@ -93,8 +160,8 @@
             line-height: 1.6;
         }                    
 
-          /* End of added styles */
-    
+        /* End of added styles */
+
         .box {
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 25px;
@@ -154,50 +221,69 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+        #about {
+            background: url("https://img.freepik.com/premium-photo/world-tuberculosis-day-represented-by-paper-lung-cut-out-pastel-background-signifies-awarenes_908985-78602.jpg") no-repeat center center/cover;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
 
         .contact-container h1 {
             color: #333;
         }
+        #home .parent-container {
+            overflow: hidden;
+        }
+        #home .image-container {
+            max-width: 100%;
+        }
+        #home img {
+            max-width: 100%;
+            height: auto;
+        }
 
+
+        #home .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .contact-container p {
             margin: 10px 0;
             color: #666;
         }
-
-
-        /* Updated Apple-style Login Page Styles */
-        #login-form-container {
-            background: rgba(255, 255, 255, 0.75); /* Adjust the alpha value for more transparency */
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            max-width: 300px;
-            width: 100%;
-            box-sizing: border-box;
+        #login-extra #login-form-container {
+            width: 100%; /* Set width to 100% for better responsiveness */
+            max-width: 400px; /* Adjust max-width as needed */
         }
-
-
-        #login-form-container h1 {
-                    color: #333;
-                }.dialogue-box {
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px;
-            color: #333;
-            text-align: center;
-            max-width: 70%;
+        .box {
+            margin-top: 20px;
         }
-
-        .dialogue-box h1 {
-            font-size: 2em;
+        #home .content > * {
             margin-bottom: 20px;
         }
+        /* Updated Apple-style Login Page Styles */
+        #login-form-container {
+            background: rgba(255, 255, 255, 0.9); /* Adjust the alpha value for more transparency */
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 400px; /* Adjust the max-width for the size of the dialogue box */
+            width: 80%; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the form horizontally */
+            box-sizing: border-box;
+            position: relative;
+            top: -50px; /* Adjust the top position to move the form up */
+        }
 
-        .dialogue-box p {
-            font-size: 1.2em;
-            line-height: 1.6;
+        #login-form-container h1 {
+            color: #333;
+            font-size: 2.5em; /* Adjust the font size for the title */
         }
 
         #login-form {
@@ -208,43 +294,64 @@
         }
 
         #login-form label {
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             color: #666;
+        }
+
+        #login-form {
+            margin-top: 20px; /* Add margin-top to create space between password input and button */
         }
 
         #login-form input {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             margin-bottom: 15px;
             box-sizing: border-box;
-            border: 1px solid #666; /* Add a light black border */
-            border-radius: 5px;
-        }
-        #login-form {
-            /*
-            dumnmy ignore
-            */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.2em;
         }
 
         #login-form button {
             background-color: #0070c9;
             color: #fff;
-            padding: 10px;
+            padding: 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            width: 100%;
+            font-size: 1.2em;
         }
 
         #login-form button:hover {
             background-color: #005499;
         }
+
+
+
+
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("#home").show();
+        $(document).ready(function () {
+            // Check sessionStorage for login state on page load
+            if (sessionStorage.getItem('loggedIn') === 'true') {
+                $('a[href="#login"]').text('Logout');
+                // Append the "Predict" link
+                appendPredictLink();
+            } else {
+                $('a[href="#login"]').text('Login');
+            }
 
-            $('a').on('click', function(event) {
+            $('a[href="#login"]').on('click', function (e) {
+                if ($(this).text() === 'Logout') {
+                    e.preventDefault();
+                    logout('manual');
+                }
+            });
+
+            $('a').on('click', function (event) {
                 event.preventDefault();
                 var page = this.hash.substring(1);
                 $(".content").hide();
@@ -261,13 +368,70 @@
             function timerIncrement() {
                 idleTime = idleTime + 1;
                 if (idleTime > 4) { // 5 minutes
-                    logout();
+                    logout('inactivity');
                 }
             }
 
-            function logout() {
+            // Function to append the "Predict" link
+            function appendPredictLink() {
+                console.log('Appending Predict Link');
+                $('.navbar-nav.ml-auto').append('<a class="nav-item nav-link" href="/predict">Predict</a>');
+            }
+
+            // Function to remove the "Predict" link
+            function removePredictLink() {
+                console.log('Removing Predict Link');
+                $('.navbar-nav.ml-auto a[href="/predict"]').remove();
+            }
+
+            // Function to update the "Predict" link in the navigation bar
+            function updatePredictLink() {
+                console.log('Updating Predict Link');
+                var predictLinkExists = $('.navbar-nav.ml-auto a[href="/predict"]').length > 0;
+
+                if (sessionStorage.getItem('loggedIn') === 'true') {
+                    console.log('User is logged in');
+                    $('a[href="#login"]').text('Logout');
+                    // Append the "Predict" link if it doesn't exist
+                    if (!predictLinkExists) {
+                        appendPredictLink();
+                    }
+                } else {
+                    console.log('User is not logged in');
+                    $('a[href="#login"]').text('Login');
+                    // Remove the "Predict" link if it exists
+                    if (predictLinkExists) {
+                        removePredictLink();
+                    }
+                }
+            }
+
+            // Initial call to update the "Predict" link
+            updatePredictLink();
+
+            // Event handler for navigation links
+            $('a').on('click', function (event) {
+                event.preventDefault();
+                var page = this.hash.substring(1);
+                $(".content").hide();
+                $("#" + page).fadeIn(1000);
+
+                // Update the "Predict" link after navigating to a new section
+                updatePredictLink();
+            });
+
+            function logout(reason) {
+                sessionStorage.removeItem('loggedIn'); // Clear the login state
                 $('a[href="#login"]').text('Login');
-                alert('You have been logged out due to inactivity.');
+                removePredictLink();
+                location.reload();
+
+                if (reason === 'inactivity') {
+                    alert('You have been logged out due to inactivity.');
+                } else if (reason === 'manual') {
+                    alert('You have been manually logged out.');
+                }
+                updatePredictLink();
             }
 
             function login(formidx) {
@@ -275,39 +439,61 @@
                 var password = $(`#password-${formidx}`).val();
 
                 if (username == 'sairam' && password == 'sairam') {
+                    sessionStorage.setItem('loggedIn', 'true'); // Set login state
                     $('a[href="#login"]').text('Logout');
                     alert('You have been successfully logged in.');
+
+                    // Remove any existing "Predict" link before appending a new one
+                    removePredictLink();
+
+                    // Append the "Predict" link
+                    appendPredictLink();
+
                     $(".content").hide();
                     $("#home").fadeIn(1000);
-                    $('.navbar div').append('<a href="/predict">Predict</a>');
                 } else {
                     alert('Invalid credentials. Please try again.');
                 }
+                updatePredictLink();
             }
 
-            $('#login-form-1').on('submit', function(e) {
+            $('#login-form-1').on('submit', function (e) {
                 e.preventDefault();
                 login(1);
             });
-            $('#login-form-2').on('submit', function(e) {
+            $('#login-form-2').on('submit', function (e) {
                 e.preventDefault();
                 login(2);
             });
         });
+
+
     </script>
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="#home"><img src="https://img.freepik.com/premium-vector/fresh-breathing-logo-design-vector-illustration-abstract-lungs-leaf_330401-16.jpg" alt="Logo" class="logo"></a>
-
-        <div>   
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#contact">Contact Us</a>
-            <a href="#login">Login</a>
-        </div> 
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#home">
+            <img src="https://img.freepik.com/premium-vector/fresh-breathing-logo-design-vector-illustration-abstract-lungs-leaf_330401-16.jpg" alt="Logo" class="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="#home">Home</a>
+                <a class="nav-item nav-link" href="#about">About Us</a>
+                <a class="nav-item nav-link" href="#contact">Contact Us</a>
+                <!-- Add the "login-logout-link" class to the Login/Logout link -->
+                <a class="nav-item nav-link login-logout-link" href="#login">Login</a>
+            </div>            
+        </div>
     </nav>
+    
+
+    <!-- Home Section -->
     <div id="home" class="content hero2">
         <h1 style="color: rgba(255, 204, 0, 0.8); font-size: 9em; opacity: 1; margin-left: 3%;">BreathePro</h1>
         <div id="login-extra" class="content">
@@ -318,11 +504,13 @@
                     <input type="text" id="username-1" name="username-1"><br>
                     <label for="password-1">Password:</label><br>
                     <input type="password" id="password-1" name="password-1"><br>
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- About Section -->
     <div id="about" class="content">
         <div class="about-content">
             <h1>About Us</h1>
@@ -330,6 +518,8 @@
             <p>Established in 1959, the <a href="https://ntiindia.kar.nic.in/" target="_blank" rel="noopener noreferrer" style="color: blue;">National Tuberculosis Institute (NTI)</a> in Bengaluru, India, addresses the urgent public health concern of tuberculosis. As a WHO Collaborative Centre, it plays a pivotal role in developing and implementing the National TB Control Programme, providing training, technical support, and serving as a National Reference Laboratory for TB control activities. NTI's multifaceted approach encompasses epidemiological, sociological, and operational studies, making it a premier institution in South East Asia.</p>
         </div>
     </div>
+
+    <!-- Login Section -->
     <div id="login" class="content">
         <div id="login-form-container">
             <h1>Signin</h1>
@@ -338,10 +528,12 @@
                 <input type="text" id="username-2" name="username-2"><br>
                 <label for="password-2">Password:</label><br>
                 <input type="password" id="password-2" name="password-2"><br>
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
+
+    <!-- Contact Section -->
     <div id="contact" class="content">
         <div class="contact-container">
             <h1>Contact Us</h1>
@@ -350,8 +542,10 @@
             <p>Phone: +91 7901286254</p>
         </div>
     </div>
+
+    <!-- Your existing JavaScript here -->
     <script>
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             var scrollPosition = window.scrollY;
             var heroElement = document.getElementById('home');
             var heroText = heroElement.querySelector('h1');
@@ -364,4 +558,5 @@
         });
     </script>
 </body>
+
 </html>

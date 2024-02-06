@@ -160,7 +160,7 @@ def predict():
 
         improvement = False
         if new_result > existing_result:
-            improvement = Positive
+            improvement = True
 
         main_data_ref = db.collection("patient-data").document(str(patient_id))
         data = dict(request.form)

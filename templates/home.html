@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Breathe Pro</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function redirectToURL(url) {
             window.location.href = url;
@@ -18,6 +18,10 @@
         :root {
             --text-color: white;
             --background-color: #000000;
+        }
+        :root {
+            --navbar-padding: 10px;
+            --hero-height: 50vh;
         }
         a {
             text-decoration: none;
@@ -59,8 +63,7 @@
             font-size: .75em;
             transition: all 0.5s ease;
         }
-        /* General styles for larger screens (default) */
-        /* Add your default styles here */
+        /* Existing styles... */
 
         /* Media query for screens with a maximum width of 600 pixels (mobile) */
         @media only screen and (max-width: 600px) {
@@ -88,10 +91,9 @@
             /* About section styles for mobile */
             #about .about-content {
                 max-width: 90%;
-                padding: 15px;
             }
             #about .about-content h1 {
-                font-size: 1em;
+                font-size: 1.5em;
             }
             #about .about-content p {
                 font-size: 1em;
@@ -103,7 +105,7 @@
                 text-align: center; /* Center text and elements within #home */
             }
             #home h1 {
-                font-size: 0.75em;
+                font-size: 1.5em;
                 margin-left: 10px;
                 margin-right: 10px;
             }
@@ -114,11 +116,14 @@
                 margin: 0 auto; /* Center the image */
             }
 
-            /* Hide the login-extra on mobile devices */
-            #login-extra {
+            /* Hide the login-extra on mobile devices for the home page */
+            #home #login-extra {
                 display: none;
             }
         }
+
+        /* Existing styles... */
+
 
 
 
@@ -272,45 +277,43 @@
             margin-bottom: 20px;
         }
         /* Updated Apple-style Login Page Styles */
+        /* Updated Apple-style Login Page Styles */
         #login-form-container {
-            background: rgba(255, 255, 255, 0.9); /* Adjust the alpha value for more transparency */
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 30px;
             text-align: center;
-            max-width: 400px; /* Adjust the max-width for the size of the dialogue box */
-            width: 80%; /* Adjust the width as needed */
-            margin: 0 auto; /* Center the form horizontally */
+            max-width: 400px;
+            width: 80%;
+            margin: 50px auto 30px; /* Increased margin to move the form down */
             box-sizing: border-box;
             position: relative;
-            top: -50px; /* Adjust the top position to move the form up */
         }
 
         #login-form-container h1 {
             color: #333;
-            font-size: 2.5em; /* Adjust the font size for the title */
+            font-size: 2.5em;
+            margin-bottom: 30px; /* Increased margin for better spacing */
         }
 
         #login-form {
-            margin-top: 20px;
+            margin-top: 30px; /* Increased margin for better spacing */
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         #login-form label {
-            margin-bottom: 10px;
+            margin-bottom: 15px; /* Increased margin for better spacing */
             color: #666;
-        }
-
-        #login-form {
-            margin-top: 20px; /* Add margin-top to create space between password input and button */
+            font-size: 1.2em;
         }
 
         #login-form input {
             width: 100%;
             padding: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Increased margin for better spacing */
             box-sizing: border-box;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -326,11 +329,29 @@
             cursor: pointer;
             width: 100%;
             font-size: 1.2em;
+            margin-top: 15px; /* Increased margin for better spacing */
         }
 
         #login-form button:hover {
             background-color: #005499;
         }
+
+        #login-form-2 label,
+        #login-form-2 input {
+            margin-bottom: 20px;
+
+        }
+        #login-form-1 label,
+        #login-form-1 input {
+            margin-bottom: 20px;
+        }
+        
+        #login-form-1 label,
+        #login-form-1 input {
+            margin-bottom: 15px;
+            color: #333; /* Add this line to set text color explicitly */
+        }
+        
 
 
 
@@ -480,10 +501,11 @@
     <!-- Bootstrap Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#home">
-            <img src="https://img.freepik.com/premium-vector/fresh-breathing-logo-design-vector-illustration-abstract-lungs-leaf_330401-16.jpg" alt="Logo" class="logo">
+            <img src="https://img.freepik.com/premium-vector/fresh-breathing-logo-design-vector-illustration-abstract-lungs-leaf_330401-16.jpg"
+                alt="Logo" class="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -491,16 +513,15 @@
                 <a class="nav-item nav-link" href="#home">Home</a>
                 <a class="nav-item nav-link" href="#about">About Us</a>
                 <a class="nav-item nav-link" href="#contact">Contact Us</a>
-                <!-- Add the "login-logout-link" class to the Login/Logout link -->
                 <a class="nav-item nav-link login-logout-link" href="#login">Login</a>
-            </div>            
+            </div>
         </div>
     </nav>
     
 
     <!-- Home Section -->
     <div id="home" class="content hero2">
-        <h1 style="color: rgba(255, 204, 0, 0.8); font-size: 9em; opacity: 1; margin-left: 3%;">BreathePro</h1>
+        <h1 style="color: rgba(255, 204, 0, 0.8); font-size: 8.1em; opacity: 1; margin-left: 3%;">BreathePro</h1>
         <div id="login-extra" class="content">
             <div id="login-form-container" style="margin-right:3%; font-size: 1.5em;">
                 <h1>Signin</h1>
@@ -527,7 +548,7 @@
     <!-- Login Section -->
     <div id="login" class="content">
         <div id="login-form-container">
-            <h1>Signin</h1>
+            <h1>Signin </h1>
             <form id="login-form-2">
                 <label for="username-2">Username:</label><br>
                 <input type="text" id="username-2" name="username-2"><br>

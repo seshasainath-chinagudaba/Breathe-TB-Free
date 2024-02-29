@@ -18,7 +18,7 @@ cb_encoder = joblib.load('catboost_encoder (1).pkl')
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
 
-cred = credentials.Certificate("/etc/secrets/tbproject-6b17f-firebase-adminsdk-gkhha-4068ae14d9.json")
+cred = credentials.Certificate("./tbproject-6b17f-firebase-adminsdk-gkhha-4068ae14d9.json")
 firebase_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 

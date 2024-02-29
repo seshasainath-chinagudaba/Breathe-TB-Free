@@ -13,26 +13,26 @@ const firebaseConfig = {
     messagingSenderId: "498459381473",
     appId: "1:498459381473:web:36b8849a2558554c0d31a0",
     measurementId: "G-EPXSRMQJDL"
-  };
-  
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  console.log("Auth module", app);
-  
-  // // const provider = new GoogleAuthProvider();
-  const auth = getAuth(app);
-  const db = getFirestore(app);
+};
 
-  function logOut() {
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+console.log("Auth module", app);
+
+// // const provider = new GoogleAuthProvider();
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+function logOut() {
     signOut(auth).then(() => {
         alert("Logged out successfully");
         location.href = '/';
-
     }).catch((error) => {
         // An error happened.
-        alert("Error logging out")
+        alert("Error logging out");
     });
+
 }
 $(document).ready(() => {
 
@@ -58,6 +58,25 @@ $(document).ready(() => {
         $('.navbar-nav.ml-auto').append('<a id="patientdata-link" class="nav-item nav-link" href="/pdata">Patient Data</a>');
     }
 
+    let logoutTimeout;
+
+    function setLogoutTimeout() {
+        // Clear any existing timeout
+        clearTimeout(logoutTimeout);
+        // Set new timeout for logout after 10 minutes (600,000 milliseconds) of inactivity
+        logoutTimeout = setTimeout(() => {
+            logOut().then(() => {
+                alert("Logged out successfully due to inactivity ");
+                location.href = '/';
+            }); // Call the logout function
+        }, 6000); // 5 minutes in milliseconds
+    }
+
+    // Function to clear the logout timeout
+    function clearLogoutTimeout() {
+        clearTimeout(logoutTimeout);
+    }
+
 
     function removeLoginLink() {
         console.log('Removing Login Link');
@@ -81,13 +100,14 @@ $(document).ready(() => {
         console.log('Removing PatientData Link');
         $('.navbar-nav.ml-auto #patientdata-link').remove();
     }
-    
-    
+
+
     console.log("Sairamlogoutlink", $('#logout-link'));
-    
+
     // Handle unverified emails
-      onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
         if (user) {
+            setLogoutTimeout();
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/auth.user
             const uid = user.uid;
@@ -111,7 +131,7 @@ $(document).ready(() => {
 
                 let docRef = doc(db, 'Users', uid);
                 getDoc(docRef).then((docSnap) => {
-                    if(docSnap.exists()){
+                    if (docSnap.exists()) {
 
                         let userInfo = docSnap.data();
                         console.log(userInfo);
@@ -120,25 +140,26 @@ $(document).ready(() => {
                         //         alert("Please reset your password for more security");
                         //     });
                         // }
-                        if(userInfo.role === "doctor"){
+                        if (userInfo.role === "doctor") {
                             removePatientDataLink();
                             appendPatientDataLink();
                         }
                     }
                 });
 
-                
+
             }
-    
-    
+
+
         } else {
             // User is signed out
             // ...
             console.log("SAIRAM logged out");
-            if(window.location.pathname !== "/"){
+            if (window.location.pathname !== "/") {
                 window.location.replace('/');
             }
-            
+            clearLogoutTimeout();
+
             removePredictLink();
             removePatientDataLink();
             removeLogoutLink();
@@ -157,4 +178,4 @@ $(document).ready(() => {
 });
 
 export default logOut;
-  // Function to append the "Predict" link
+// Function to append the "Predict" link

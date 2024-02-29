@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        /* Your existing CSS here */
+        :root {
+            --text-color: white;
+            --background-color: #000000;
+        }
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        .logo {
+            height: 40px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: var(--background-color);
+        }
+        .navbar a {
+            margin-right: 15px;
+        }
+        .hero {
+            height: 100vh;
+            background: url('https://st5.depositphotos.com/9800054/64389/i/600/depositphotos_643890090-stock-photo-human-lungs-made-tree-branches.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2em;
+            transition: all 0.5s ease;
+        }
+        .hero2 {
+            height: 100vh;
+            background: url('https://st5.depositphotos.com/9800054/64389/i/600/depositphotos_643890090-stock-photo-human-lungs-made-tree-branches.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 1em;
+            transition: all 0.5s ease;
+        }
+        @media only screen and (max-width: 600px) {
+            .hero {
+                font-size: 1em;
+            }
+            
+        }
+        .content {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100vh; /* This will make the content take up the full viewport height */
+            text-align: center;
+           /* background-attachment: fixed;  This will fix the background image */
+        }
+        /* Add this CSS code to your existing styles */
+
+            #about {
+                background: url("https://img.freepik.com/premium-photo/world-tuberculosis-day-represented-by-paper-lung-cut-out-pastel-background-signifies-awarenes_908985-78602.jpg") no-repeat center center/cover;
+                overflow: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                position: relative;
+            }
+
+        .about-content {
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 15px;
+                padding: 30px;
+                margin: 20px;
+                color: #333;
+                text-align: center;
+                max-width: 70%;
+        }
+
+        .about-content h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }                    
+
+          /* End of added styles */
+    
+        .box {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 25px;
+            padding: 20px;
+            margin: 20px;
+            color: var(--text-color);
+            width: 40%;
+            align-self: flex-start;
+        }
+        .box:nth-child(2) {
+            align-self: flex-end;
+        }
+        #login {
+            background: url('https://img.freepik.com/premium-photo/symbolic-blue-hole-lungs-representing-healthy-lungs-world-tuberculosis-day_908985-43535.jpg') no-repeat center center/cover;
+            overflow: auto; /* This will allow the text to scroll */
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh; /* Set the height to 100vh to match the Home page */
+            flex-grow: 2;
+            
+        }
+        #login-extra {
+            /* background: url('https://img.freepik.com/premium-photo/symbolic-blue-hole-lungs-representing-healthy-lungs-world-tuberculosis-day_908985-43535.jpg') no-repeat center center/cover; */
+            overflow: auto; /* This will allow the text to scroll */
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: flex-end;
+            align-items: center;
+            height: 100vh; /* Set the height to 100vh to match the Home page */
+            flex-grow: 2;
+            
+        }
+        #contact {
+            background: url('https://t4.ftcdn.net/jpg/05/04/78/25/360_F_504782581_LHwsDbXlrFiiadWC4i15yV2lhbJnB8g0.jpg') no-repeat center center/cover;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative; /* Added position relative to allow absolute positioning */
+        }
+
+        .contact-container {
+            background: rgba(255, 255, 255, 0.6); /* Adjust the alpha value for more transparency */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .contact-container h1 {
+            color: #333;
+        }
+
+        .contact-container p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+
+        /* Updated Apple-style Login Page Styles */
+        #login-form-container {
+            background: rgba(255, 255, 255, 0.75); /* Adjust the alpha value for more transparency */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+        #login-form-container h1 {
+                    color: #333;
+                }.dialogue-box {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px;
+            color: #333;
+            text-align: center;
+            max-width: 70%;
+        }
+
+        .dialogue-box h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .dialogue-box p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        #login-form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #login-form label {
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        #login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #666; /* Add a light black border */
+            border-radius: 5px;
+        }
+
+
+        #login-form button {
+            background-color: #0070c9;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #login-form button:hover {
+            background-color: #005499;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#home").show();
+
+            $('a').on('click', function(event) {
+                event.preventDefault();
+                var page = this.hash.substring(1);
+                $(".content").hide();
+                $("#" + page).fadeIn(1000);
+            });
+
+            var idleTime = 0;
+            var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+            $(this).mousemove(function (e) {
+                idleTime = 0;
+            });
+
+            function timerIncrement() {
+                idleTime = idleTime + 1;
+                if (idleTime > 4) { // 5 minutes
+                    logout();
+                }
+            }
+
+            function logout() {
+                $('a[href="#login"]').text('Login');
+                alert('You have been logged out due to inactivity.');
+            }
+
+            function login(formidx) {
+                var username = $(`#username-${formidx}`).val();
+                var password = $(`#password-${formidx}`).val();
+
+                if (username == 'sairam' && password == 'sairam') {
+                    $('a[href="#login"]').text('Logout');
+                    alert('You have been successfully logged in.');
+                    $(".content").hide();
+                    $("#home").fadeIn(1000);
+                    $('.navbar div').append('<a href="/predict">Predict</a>');
+                } else {
+                    alert('Invalid credentials. Please try again.');
+                }
+            }
+
+            $('#login-form-1').on('submit', function(e) {
+                e.preventDefault();
+                login(1);
+            });
+            $('#login-form-2').on('submit', function(e) {
+                e.preventDefault();
+                login(2);
+            });
+        });
+    </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+        import { getAuth, getRedirectResult, GoogleAuthProvider, signInWithRedirect } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js';        // TODO: Add SDKs for Firebase products that you want to use
+
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCWMH2CFCHt5-vwZgkasBEcGOAFDwmUoUE",
+          authDomain: "tbproject-6b17f.firebaseapp.com",
+          projectId: "tbproject-6b17f",
+          storageBucket: "tbproject-6b17f.appspot.com",
+          messagingSenderId: "498459381473",
+          appId: "1:498459381473:web:36b8849a2558554c0d31a0",
+          measurementId: "G-EPXSRMQJDL"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const provider = new GoogleAuthProvider();
+        const auth = getAuth();
+        console.log("I am here");
+        
+
+            function signIn()
+            {
+                signInWithRedirect(auth, provider)
+                .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    // The signed-in user info.
+                    const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+                    
+        
+                }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+                });
+            }
+        signIn();
+
+        auth.getRedirectResult(auth).then((result) => {
+            // This gives you a Google Access Token. You can use it to access Google APIs.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            console.log("got redirected result");
+            // The signed-in user info.
+            const user = result.user;
+        }).catch(error => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+        });
+
+
+
+
+      </script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#home"><img src="https://img.freepik.com/premium-vector/fresh-breathing-logo-design-vector-illustration-abstract-lungs-leaf_330401-16.jpg" alt="Logo" class="logo"></a>
+
+        <div>   
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact Us</a>
+            <a>Login</a>
+        </div> 
+    </nav>
+    <div id="home" class="content hero2">
+        <h1 style="color: rgba(255, 204, 0, 0.8); font-size: 9em; opacity: 1; margin-left: 3%;">BreathePro</h1>
+        <div id="login-extra" class="content">
+            <div id="login-form-container" style="margin-right:3%; font-size: 1.5em;">
+                <h1>Signin</h1>
+                <form id="login-form-1">
+                    <label for="username-1">Username:</label><br>
+                    <input type="text" id="username-1" name="username-1"><br>
+                    <label for="password-1">Password:</label><br>
+                    <input type="password" id="password-1" name="password-1"><br>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="about" class="content">
+        <div class="about-content">
+            <h1>About Us</h1>
+            <p><a href="https://www.sssihl.edu.in/cemb/" target="_blank" rel="noopener noreferrer" style="color: blue;">Centre for Excellence in Mathematical Biology (CEMB)</a> is dedicated to societal empowerment through mathematical innovation, focusing on actionable solutions for public well-being. The proposed center aims to foster interdisciplinary collaboration, provide education and mentorship, and establish sustainable international research collaborations, particularly in epidemiological and ecological research, to drive positive societal impact. CEMB's goal is to lead in leveraging mathematical research for a brighter and more prosperous future.</p>
+            <p>Established in 1959, the <a href="https://ntiindia.kar.nic.in/" target="_blank" rel="noopener noreferrer" style="color: blue;">National Tuberculosis Institute (NTI)</a> in Bengaluru, India, addresses the urgent public health concern of tuberculosis. As a WHO Collaborative Centre, it plays a pivotal role in developing and implementing the National TB Control Programme, providing training, technical support, and serving as a National Reference Laboratory for TB control activities. NTI's multifaceted approach encompasses epidemiological, sociological, and operational studies, making it a premier institution in South East Asia.</p>
+        </div>
+    </div>
+    <div id="login" class="content">
+        <div id="login-form-container">
+            <h1>Signin</h1>
+            <form id="login-form-2">
+                <label for="username-2">Username:</label><br>
+                <input type="text" id="username-2" name="username-2"><br>
+                <label for="password-2">Password:</label><br>
+                <input type="password" id="password-2" name="password-2"><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div id="contact" class="content">
+        <div class="contact-container">
+            <h1>Contact Us</h1>
+            <p>If you have any questions or inquiries, feel free to contact us through the following channels:</p>
+            <p>Email: cemb@sssihl.edu.in</p>
+            <p>Phone: +91 7901286254</p>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            var scrollPosition = window.scrollY;
+            var heroElement = document.getElementById('home');
+            var heroText = heroElement.querySelector('h1');
+
+            if (scrollPosition <= window.innerHeight / 2) {
+                heroText.style.opacity = 1 - scrollPosition / (window.innerHeight / 2);
+            } else {
+                heroText.style.opacity = 0;
+            }
+        });
+    </script>
+</body>
+</html>

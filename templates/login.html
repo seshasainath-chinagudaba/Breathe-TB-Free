@@ -1,47 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-</head>
+<html lang="en">
+{% include 'head.html' %}
+<script type="module" src="{{ url_for('static', filename='login.js') }}"></script>
+
+
 <body>
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
-  <script>
-    var firebaseConfig = {
-      apiKey: "AIzaSyDCh_XSoWk3xuEEs89X2QYxq48boVTUDpI",
-      authDomain: "tbproject-e2a3f.firebaseapp.com",
-      databaseURL: "https://tbproject-e2a3f-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "tbproject-e2a3f",
-      storageBucket: "tbproject-e2a3f.appspot.com",
-      messagingSenderId: "790174799182",
-      appId: "1:790174799182:web:5864f1c2860ff4a672fa1f",
-      measurementId: "G-FT98PV3N4F"
-    };
-    firebase.initializeApp(firebaseConfig);
-
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-    var uiConfig = {
-      callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-          return true;
-        },
-        uiShown: function() {
-          document.getElementById('loader').style.display = 'none';
-        }
-      },
-      signInFlow: 'popup',
-      signInSuccessUrl: '<URL_TO_REDIRECT_TO_ON_SUCCESS>',
-      signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
-      ],
-    };
-
-    ui.start('#firebaseui-auth-container', uiConfig);
-  </script>
+    {% include 'navigation.html' %}
+    <div id="login" class="content">
+        <div id="login-form-container">
+            <h1>Signin </h1>
+            <form id="login-form">
+                <label for="emailAddress">Email:</label><br>
+                <input type="email" id="emailAddress" name="emailAddress"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password"><br>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <p>If not registered, please <a href="/signup">sign up</a></p>
+            <p><a href="/reset">Forgot password</a></p>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>

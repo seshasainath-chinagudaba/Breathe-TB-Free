@@ -39,8 +39,15 @@
         }
 
         .improvement {
-            color: green;
             font-weight: bold;
+        }
+
+        .positive {
+            color: green;
+        }
+
+        .negative {
+            color: red;
         }
     </style>
 </head>
@@ -50,7 +57,15 @@
         <p><strong>Patient ID:</strong> {{ patient_id }}</p>
         <p><strong>Previous Result:</strong> {{ existing_result }}</p>
         <p><strong>New Result:</strong> {{ new_result }}</p>
-        <p class="improvement"><strong>Improvement:</strong> {{ improvement }}</p>
+        {% if improvement %}
+            <p class="improvement positive">Improvement: Positive</p>
+            {% if improvement_percentage is defined %}
+                <p class="improvement positive"><strong>Improvement Percentage:</strong> {{ improvement_percentage | default(0) }}%</p>
+            {% endif %}
+        {% else %}
+            <p class="improvement negative">Improvement: Negative</p>
+        {% endif %}
+        <p><strong>LFU (Lost Follow-Up):</strong> {{ lfu_score }}%</p>
         <!-- You can add more prescription-style information here -->
     </div>
 </body>

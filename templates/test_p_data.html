@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('background-image.jpg'); /* Change the path to your background image */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .patient-details {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .patient-details h2 {
+            margin-top: 0;
+        }
+    </style>
+
+  
+    <script type="module" src="{{url_for('static', filename='auth.js')}}"></script>
+
+<body>
+
+{% include 'navigation.html' %}
+<input type="hidden" value="{{patientId}}" id="patient_id"/>
+<table id="followUpTable">
+    <thead>
+        <tr>
+            <th>Followup Date</th>
+            <th>Patient Details</th>
+        </tr>
+    </thead>
+    <tbody id="followUpTableBody">
+        <tr>
+            <td>2024-02-19</td>
+            <td><a href="#" class="patientDetailsLink">View Details</a></td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+
+<div id="patientDetails" class="patient-details">
+    <h2>Patient Details</h2>
+    <table>
+        <tr><th>Patient ID:</th><td id="patientID"></td></tr>
+       
+        <tr><th>Age:</th><td id="patientAge"></td></tr>
+        <tr><th>Gender:</th><td id="patientGender"></td></tr>
+        <tr><th>Patient Status:</th><td id="patientStatus"></td></tr>
+        <tr><th>Site Of Disease:</th><td id="siteOfDisease"></td></tr>
+        <tr><th>Basis of diagnosis:</th><td id="basis of diagnosis"></td></tr>
+        <tr><th>Contact tracing done:</th><td id="Contact tracing done"></td></tr>
+        <tr><th>DiagnosingFacilityDistrict:</th><td id="DiagnosingFacilityDistrict"></td></tr>
+        <tr><th>DiagnosingFacilityPHI:</th><td id="DiagnosingFacilityPHI"></td></tr>
+        <tr><th>DiagnosingFacilityPHIType:</th><td id="DiagnosingFacilityPHIType"></td></tr>
+        <tr><th>CurrentFacilityDistrict:</th><td id="CurrentFacilityDistrict"></td></tr>
+        <tr><th>CurrentFacilityPHI:</th><td id="CurrentFacilityPHI"></td></tr>
+        <tr><th>CurrentFacilityPHIType:</th><td id="CurrentFacilityPHIType"></td></tr>
+        <tr><th>CurrentFacilityTBU:</th><td id="CurrentFacilityTBU"></td></tr>
+        <tr><th>Diagnosis Health Facility Sector:</th><td id="Diagnosis Health Facility Sector"></td></tr>
+        <tr><th>DiagnosingFacilityTBU:</th><td id="DiagnosingFacilityTBU"></td></tr>
+        <tr><th>EPSite:</th><td id="EPSite"></td></tr>
+        <tr><th>FollowupDone_Count:</th><td id="FollowupDone_Count"></td></tr>
+        <tr><th>HIV_Status:</th><td id="HIV_Status"></td></tr>
+        <tr><th>HO_AlcoholIntake:</th><td id="HO_AlcoholIntake"></td></tr>
+        <tr><th>Health Care Worker:</th><td id="Health Care Worker"></td></tr>
+        <tr><th>Migrant:</th><td id="Migrant"></td></tr>
+        <tr><th>Not Applicable:</th><td id="Not Applicable"></td></tr>
+        <tr><th>Other:</th><td id="Other"></td></tr>
+        <tr><th>PregnancyStatus:</th><td id="PregnancyStatus"></td></tr>
+        <tr><th>Tobacco:</th><td id="Tobacco"></td></tr>
+        <tr><th>TypeOfCase:</th><td id="TypeOfCase"></td></tr>
+        <tr><th>Urban Slum:</th><td id="Urban Slum"></td></tr>
+        <tr><th>Weight:</th><td id="Weight"></td></tr>
+        <tr><th>basisOfDiagnosis_TestName:</th><td id="basisOfDiagnosis_TestName"></td></tr>
+        <tr><th>date:</th><td id="date"></td></tr>
+        <tr><th>resultMessage:</th><td id="resultMessage"></td></tr>
+        <tr><th>BankDetailsAdded:</th><td id="BankDetailsAdded"></td></tr>
+        <tr><th>Bronchial Asthma:</th><td id="Bronchial Asthma"></td></tr>
+        <tr><th>Contact of Known TB Patients:</th><td id="Contact of Known TB Patients"></td></tr>
+        <tr><th>Covid19Status:</th><td id="Covid19Status"></td></tr>
+        <tr><th>Current Health Facility Sector:</th><td id="Current Health Facility Sector"></td></tr>
+        <tr><th>CurrentTobaccoUser:</th><td id="CurrentTobaccoUser"></td></tr>
+        <tr><th>Diabetes:</th><td id="Diabetes"></td></tr>
+        <tr><th>DiabetesStatus:</th><td id="DiabetesStatus"></td></tr>
+        <tr><th>DiagnosingFacilityState:</th><td id="DiagnosingFacilityState"></td></tr>
+        <tr><th>RBS:</th><td id="rbs"></td></tr>
+        <!-- <tr><th>RBS:</th><td id="rbs"></td></tr> -->
+    </table>
+</div>
+<script type="module" src="{{ url_for('static', filename='tp_data.js')}}"></script>
+<script>
+
+    
+   
+
+
+    // document.querySelectorAll('.patientDetailsLink').forEach(function(link) {
+    //     link.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         var patientID = this.parentElement.parentElement.children[0].innerText;
+            
+    //         // Mock patient data (replace this with your actual patient data retrieval logic)
+    //         var patientData = {
+    //             name: 'John Doe',
+    //             age: 35,
+    //             gender: 'Male',
+    //             diagnosis: 'Hypertension',
+    //             medication: 'Lisinopril'
+    //         };
+
+    //         // Display patient details
+    //         document.getElementById('patientID').innerText = patientID;
+    //         document.getElementById('patientName').innerText = patientData.name;
+    //         document.getElementById('patientAge').innerText = patientData.age;
+    //         document.getElementById('patientGender').innerText = patientData.gender;
+    //         document.getElementById('patientDiagnosis').innerText = patientData.diagnosis;
+    //         document.getElementById('patientMedication').innerText = patientData.medication;
+
+    //         // Show patient details
+    //         document.getElementById('patientDetails').style.display = 'block';
+    //     });
+    // });
+</script>
+
+</body>
+</html>

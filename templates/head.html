@@ -1,0 +1,470 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Breathe Pro</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Firebase JavaScript SDK -->
+     <!-- Firebase JavaScript SDK -->
+
+
+        
+
+    <script>
+
+        function redirectToURL(url) {
+            window.location.href = url;
+        }
+    </script>
+    <style>
+        /* Your existing CSS here */
+        :root {
+            --text-color: white;
+            --background-color: #000000;
+        }
+
+        :root {
+            --navbar-padding: 10px;
+            --hero-height: 50vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: var(--background-color);
+        }
+
+        .navbar a {
+            margin-right: 15px;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url('https://st5.depositphotos.com/9800054/64389/i/600/depositphotos_643890090-stock-photo-human-lungs-made-tree-branches.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2em;
+            transition: all 0.5s ease;
+        }
+
+        .hero2 {
+            height: 100vh;
+            background: url('https://st5.depositphotos.com/9800054/64389/i/600/depositphotos_643890090-stock-photo-human-lungs-made-tree-branches.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+            font-size: .75em;
+            transition: all 0.5s ease;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100vh;
+            /* This will make the content take up the full viewport height */
+            text-align: center;
+            /* background-attachment: fixed;  This will fix the background image */
+        }
+
+        /* Add this CSS code to your existing styles */
+
+        #about {
+            background: url("https://img.freepik.com/premium-photo/world-tuberculosis-day-represented-by-paper-lung-cut-out-pastel-background-signifies-awarenes_908985-78602.jpg") no-repeat center center/cover;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .about-content {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px;
+            color: #333;
+            text-align: center;
+            max-width: 70%;
+        }
+
+        .about-content h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        /* End of added styles */
+
+        .box {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 25px;
+            padding: 20px;
+            margin: 20px;
+            color: var(--text-color);
+            width: 40%;
+            align-self: flex-start;
+        }
+
+        .box:nth-child(2) {
+            align-self: flex-end;
+        }
+
+        #login {
+            background: url('https://img.freepik.com/premium-photo/symbolic-blue-hole-lungs-representing-healthy-lungs-world-tuberculosis-day_908985-43535.jpg') no-repeat center center/cover;
+            overflow: auto;
+            /* This will allow the text to scroll */
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            /* Set the height to 100vh to match the Home page */
+            flex-grow: 2;
+
+        }
+
+        #login-extra {
+            /* background: url('https://img.freepik.com/premium-photo/symbolic-blue-hole-lungs-representing-healthy-lungs-world-tuberculosis-day_908985-43535.jpg') no-repeat center center/cover; */
+            overflow: auto;
+            /* This will allow the text to scroll */
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: flex-end;
+            align-items: center;
+            height: 100vh;
+            /* Set the height to 100vh to match the Home page */
+            flex-grow: 2;
+
+        }
+
+        #contact {
+            background: url('https://t4.ftcdn.net/jpg/05/04/78/25/360_F_504782581_LHwsDbXlrFiiadWC4i15yV2lhbJnB8g0.jpg') no-repeat center center/cover;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            /* Added position relative to allow absolute positioning */
+        }
+
+        .contact-container {
+            background: rgba(255, 255, 255, 0.6);
+            /* Adjust the alpha value for more transparency */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #about {
+            background: url("https://img.freepik.com/premium-photo/world-tuberculosis-day-represented-by-paper-lung-cut-out-pastel-background-signifies-awarenes_908985-78602.jpg") no-repeat center center/cover;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .contact-container h1 {
+            color: #333;
+        }
+
+        #home .parent-container {
+            overflow: hidden;
+        }
+
+        #home .image-container {
+            max-width: 100%;
+        }
+
+        #home img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        #home .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-container p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        #login-extra #login-form-container {
+            width: 100%;
+            /* Set width to 100% for better responsiveness */
+            max-width: 400px;
+            /* Adjust max-width as needed */
+        }
+
+        .box {
+            margin-top: 20px;
+        }
+
+        #home .content>* {
+            margin-bottom: 20px;
+        }
+
+        /* Updated Apple-style Login Page Styles */
+        /* Updated Apple-style Login Page Styles */
+        #login-form-container {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 80%;
+            margin: 50px auto 30px;
+            /* Increased margin to move the form down */
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        #login-form-container h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            /* Increased margin for better spacing */
+        }
+
+        #login-form {
+            margin-top: 30px;
+            /* Increased margin for better spacing */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #login-form label {
+            margin-bottom: 15px;
+            /* Increased margin for better spacing */
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        #login-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            /* Increased margin for better spacing */
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.2em;
+        }
+
+        #login-form button {
+            background-color: #0070c9;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.2em;
+            margin-top: 15px;
+            /* Increased margin for better spacing */
+        }
+
+        #login-form button:hover {
+            background-color: #005499;
+        }
+
+        #login-form-2 label,
+        #login-form-2 input {
+            margin-bottom: 20px;
+
+        }
+
+        #login-form-1 label,
+        #login-form-1 input {
+            margin-bottom: 20px;
+        }
+
+        #login-form-1 label,
+        #login-form-1 input {
+            margin-bottom: 15px;
+            color: #333;
+            /* Add this line to set text color explicitly */
+        }
+    </style>
+    
+    <!-- <style>
+        body {
+            background-image: url('https://img.freepik.com/premium-photo/drawing-lung-with-green-leaves-it_416902-852.jpg');
+            /* Add the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+
+
+        .navbar {
+            background-color: #f8f9fa !important;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        #signup-form-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 350px;
+            /* Reduced max-width */
+            width: 100%;
+            box-sizing: border-box;
+            margin: auto;
+            /* Center the form horizontally */
+        }
+
+
+        #signup-form-container h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        #signup-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #signup-form label {
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        #signup-form input,
+        #signup-form select {
+            width: 100%;
+            /* Make inputs and selects take up full width */
+            padding: 15px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.2em;
+        }
+
+        #signup-form button {
+            background-color: #0070c9;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            /* Make button take up full width */
+            font-size: 1.2em;
+            margin-top: 15px;
+        }
+
+
+        #signup-form button:hover {
+            background-color: #005499;
+        }
+
+        #signup-form-container {
+            overflow: hidden;
+        }
+
+        #signup-form label {
+            flex: 1;
+        }
+
+        #signup-form input,
+        #signup-form select {
+            width: calc(100% - 30px);
+        }
+
+        #signup-form button {
+            width: calc(100% - 30px);
+        }
+
+        .address-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .address-container .form-group {
+            flex: 1 1 45%;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .address-container .form-group {
+                flex-basis: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            #signup-form input,
+            #signup-form select {
+                width: 100%;
+            }
+        }
+
+        
+    </style> -->
+</head>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+    
+    <style>
+        
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        #signup-form-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            max-width: 350px;
+            /* Reduced max-width */
+            width: 100%;
+            box-sizing: border-box;
+            margin: auto;
+            /* Center the form horizontally */
+        }
+
+
+        #signup-form-container h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        #signup-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #signup-form label {
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        #signup-form input,
+        #signup-form select {
+            width: 100%;
+            /* Make inputs and selects take up full width */
+            padding: 15px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.2em;
+        }
+
+        #signup-form button {
+            background-color: #0070c9;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            /* Make button take up full width */
+            font-size: 1.2em;
+            margin-top: 15px;
+        }
+
+
+        #signup-form button:hover {
+            background-color: #005499;
+        }
+
+        #signup-form-container {
+            overflow: hidden;
+        }
+
+        #signup-form label {
+            flex: 1;
+        }
+
+        #signup-form input,
+        #signup-form select {
+            width: calc(100% - 30px);
+        }
+
+        #signup-form button {
+            width: calc(100% - 30px);
+        }
+
+        .address-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .address-container .form-group {
+            flex: 1 1 45%;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .address-container .form-group {
+                flex-basis: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            #signup-form input,
+            #signup-form select {
+                width: 100%;
+            }
+        }
+
+        
+    </style>
+
+    <script type="module" src="{{url_for('static', filename='signup.js')}}"></script>
+
+
+<body>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#home">
+            <img src="https://img.freepik.com/premium-vector/fresh-breathing-logo-design-vector-illustration-abstract-lungs-leaf_330401-16.jpg"
+                alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link login-logout-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </nav> -->
+    {% include 'navigation.html' %}
+    <div id="signup" class="content">
+        <div id="signup-form-container">
+            <h1>Sign Up</h1>
+            <form id="signup-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+                <label for="emailAddress">Email address:</label>
+                <input type="email" id="emailAddress" name="emailAddress">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+
+
+
+                <label for="role">Role:</label>
+                <select id="role" name="role">
+                    <option value="doctor">Doctor</option>
+                    <option value="healthcare_worker">Healthcare Worker</option>
+                </select>
+
+                <label for="mobile">Phone number:</label>
+                <input type="tel" id="mobile" name="mobile">
+                <div class="address-container">
+                    <div class="form-group">
+
+                        <label for="district">District:</label>
+                        <select id="district" name="district" required>
+                            <option value="" disabled selected>Select District</option>
+                            <option value="BENGALURU CITY">BENGALURU CITY</option>
+                            <option value="DHARWAD">DHARWAD</option>
+                            <option value="GADAG">GADAG</option>
+                            <option value="BELGAUM">BELGAUM</option>
+                            <option value="UDUPI">UDUPI</option>
+                            <option value="TUMKUR">TUMKUR</option>
+                            <option value="RAICHUR">RAICHUR</option>
+                            <option value="CHIKKABALLAPUR">CHIKKABALLAPUR</option>
+                            <option value="KALABURAGI">KALABURAGI</option>
+                            <option value="BIDAR">BIDAR</option>
+                            <option value="BELLARY">BELLARY</option>
+                            <option value="HASSAN">HASSAN</option>
+                            <option value="KOLAR">KOLAR</option>
+                            <option value="CHITRADURGA">CHITRADURGA</option>
+                            <option value="CHAMARAJANAGAR">CHAMARAJANAGAR</option>
+                            <option value="VIJAYAPURA">VIJAYAPURA</option>
+                            <option value="KOPPAL">KOPPAL</option>
+                            <option value="CHIKMAGALUR">CHIKMAGALUR</option>
+                            <option value="HAVERI">HAVERI</option>
+                            <option value="BAGALKOT">BAGALKOT</option>
+                            <option value="DAKSHINA KANNADA">DAKSHINA KANNADA</option>
+                            <option value="YADGIRI">YADGIRI</option>
+                            <option value="BENGALURU URBAN">BENGALURU URBAN</option>
+                            <option value="KODAGU">KODAGU</option>
+                            <option value="MANDYA">MANDYA</option>
+                            <option value="UTTARA KANNADA">UTTARA KANNADA</option>
+                            <option value="SHIMOGA">SHIMOGA</option>
+                            <option value="DAVANAGERE">DAVANAGERE</option>
+                            <option value="BENGALURU RURAL">BENGALURU RURAL</option>
+                            <option value="MYSURU">MYSURU</option>
+                            <option value="RAMANAGARA">RAMANAGARA</option>
+                            <option value="VIJAYANAGARA">VIJAYANAGARA</option>
+                        </select>
+                    </div>
+
+                    <!-- TB Unit dropdown -->
+                    <div class="form-group">
+                        <label for="TBUnit">Select TB Unit:</label>
+                        <select id="TBUnit" name="TBUnit" required>
+                            <!-- TB units will be dynamically populated based on the selected district -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PHI">Select PHI:</label>
+                        <select id="PHI" name="PHI" required>
+                            <!-- PHI options will be dynamically populated based on the selected TB Unit -->
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Signup</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

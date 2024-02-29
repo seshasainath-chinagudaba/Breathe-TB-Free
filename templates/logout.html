@@ -1,0 +1,8 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="{{url_for('static', filename='auth.js')}}"></script>
+    <script type="module">
+        import logOut from "{{url_for('static', filename='auth.js')}}";
+        logOut();
+    </script>
+</head>

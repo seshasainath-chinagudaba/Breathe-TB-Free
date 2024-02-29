@@ -1,17 +1,35 @@
-from flask import Flask, render_template, request, jsonify
 import pandas as pd
+import xgboost as xgb
+import category_encoders as ce
+import joblib
+from flask import Flask, render_template, request, jsonify
+import hashlib
+from cachetools import LFUCache
+import datetime as dt
+
 app = Flask(__name__)
 
-import firebase_admin
-from firebase_admin import credentials, firestore
+model = xgb.XGBClassifier(objective='binary:logistic', random_state=42)
+model.load_model('xgboost_model (2).model')
 
-cred = credentials.Certificate("./tbproject-e2a3f-firebase-adminsdk-stk15-cf6e246512.json")
+# Load the pre-trained category encoder
+cb_encoder = joblib.load('catboost_encoder (1).pkl')
+
+import firebase_admin
+from firebase_admin import credentials, firestore, auth
+
+cred = credentials.Certificate("./tbproject-6b17f-firebase-adminsdk-gkhha-4068ae14d9.json")
 firebase_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
+
+
+
+
+cache = LFUCache(maxsize=1000) 
 # Store logged-in status
 logged_in = False
 
@@ -20,35 +38,54 @@ logged_in = False
 def index():
     return render_template('home.html')
 
+
+
+# Signup endpoint
+@app.route('/signup', methods=['GET'])
+def signup():
+    return render_template('signup.html')
+    
+
+
 # Login endpoint
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET'])
 def login():
-    global logged_in
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-    if username == 'sairam' and password == 'sairam':
-        logged_in = True
-        return jsonify({'success': True})
-    else:
-        return jsonify({'success': False, 'message': 'Invalid credentials'})
-
-
-# @app.route('/signin')
-# def signin():
-#     return render_template('signin.html')
+    return render_template('login.html')
 
 
 # Logout endpoint
 @app.route('/logout')
 def logout():
-    global logged_in
-    logged_in = False
-    return jsonify({'success': True})
+    return render_template('logout.html')
+    
+
+@app.route('/verify')
+def verify():
+    return render_template('verify.html')
+
+
+
+@app.route('/reset')
+def reset():
+    return render_template('forgot_password.html')
+
+@app.route('/pdata')
+def pdata():
+    return render_template('p_data.html')
+
+
+@app.route('/followup-details/<patientId>')
+def followups(patientId):
+    return render_template('test_p_data.html', patientId=patientId)
+
+
+## PREDICTION SERVICE
+
+
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
     if request.method == 'GET':
-        return render_template('index.html')
+        return render_template('predict.html')
     
     # Get the input values from the form
     
@@ -78,8 +115,8 @@ def predict():
     bank_details_added = request.form.get('BankDetailsAdded')
     followup_done_count = request.form.get('FollowupDone_Count')
     contact_tracing_done = request.form.get('ContactTracing_Done')
-    current_health_facility_sector = request.form.get('HealthFacilitySector')
-    diagnosing_health_facility_sector = request.form.get('DiagnosisHealthFacilitySector')
+    current_health_facility_sector = request.form.get('Current Health Facility Sector')
+    diagnosing_health_facility_sector = request.form.get('Diagnosis Health Facility Sector')
     basis_of_diagnosis = request.form.get('BasisOfDiagnosis')
     rbs = request.form.get('RBS')
     current_tobacco_user = request.form.get('CurrentTobaccoUser')
@@ -89,18 +126,18 @@ def predict():
     # state_of_tb = request.form.get('State_of_TB')
     # key_population = request.form.get('KeyPopulation')
     k_tobacco = request.form.get('hTobacco')
-    k_Contact_of_Known_TB_Patient =request.form.get('hContactTB')
-    K_Not_Applicable =  request.form.get('hNotApplicable')
-    k_Bronchial_Asthma = request.form.get('hBronchialAsthma')
+    k_Contact_of_Known_TB_Patient =request.form.get('hContact of Known TB Patients')
+    K_Not_Applicable =  request.form.get('hNot Applicable')
+    k_Bronchial_Asthma = request.form.get('hBronchial Asthma')
     k_Other = request.form.get('hOther')
-    K_Urban_Slum =request.form.get('hUrbanSlum')
+    K_Urban_Slum =request.form.get('hUrban Slum')
     K_Migrant = request.form.get('hMigrant')
-    k_Health_Care_Worker = request.form.get('hHealthCareWorker')
+    k_Health_Care_Worker = request.form.get('hHealth Care Worker')
     k_Diabetes = request.form.get('hDiabetes')
 
 
-    patient_id_ref = db.collection("patient-ids").document(str(patient_id))
-    patient_id_ref.set({'patientId': patient_id})
+    # patient_id_ref = db.collection("patient-ids").document(str(patient_id))
+    # patient_id_ref.set({'patientId': patient_id})
     # import random
      
     # Create a DataFrame from user input
@@ -149,81 +186,82 @@ def predict():
        'Diabetes': [k_Diabetes],
     
     }
-    import random
-    patient_id_ref = db.collection("patient-ids").document(str(patient_id))
-    existing_data = patient_id_ref.get()
-    if existing_data.exists:
-        existing_data = existing_data.to_dict()
+  
 
-        existing_result = existing_data.get('resultMessage', '')
-        new_result = '70%'  # Replace this with your actual calculation
 
-        improvement = False
-        if new_result > existing_result:
-            improvement = True
+   
+    # Convert numerical columns to float
+    
 
-        main_data_ref = db.collection("patient-data").document(str(patient_id))
-        data = dict(request.form)
-        del data['patientId']
-        main_data_ref.set(data)
+    # Load your encoder model (assuming it's already initialized and named cb_encoder)
+    # cb_encoder = your_model_initialization()
+    # Ensure that categorical columns are of 'category' data type
+    user_input_df = pd.DataFrame(user_input_dict)
 
-        main_data_ref.update({'resultMessage': new_result, 'improvement': improvement})
+    for col in user_input_df.select_dtypes(include=['object']).columns:
+        user_input_df[col] = user_input_df[col].astype('category')
 
-        # Render the result template with the relevant data
-        return render_template('result.html', patient_id=patient_id, existing_result=existing_result, new_result=new_result, improvement=improvement)
 
-    else:
-        patient_id_ref.set({'patientId': patient_id})
+    print(user_input_df.to_dict())
+    # Encode categorical features using the CatBoost encoder
 
-        # Your existing code for saving new data and predicting result goes here
+    numerical_columns = ['Age', 'Weight', 'FollowupDone_Count', 'RBS', 'Tobacco', 
+                        'Contact of Known TB Patients', 'Not Applicable', 
+                        'Bronchial Asthma', 'Other', 'Urban Slum', 'Migrant', 
+                        'Health Care Worker', 'Diabetes']
 
-        # Render a message for new patient ID
-        return f'<h1>Result</h1><p>New patient ID, data saved.</p>'
+    for col in numerical_columns:
+        user_input_df[col] = user_input_df[col].astype(float)
+
+    user_input_cb = cb_encoder.transform(user_input_df)
+
+    # Use the trained XGBoost model to predict the probability for the user-provided test point
+    predicted_probabilities = model.predict_proba(user_input_cb)
+    print("Sairam predicted probabilities:", predicted_probabilities)
+    # Get the probability of class 1
+    success_prob = predicted_probabilities[0][0]  # Probability of Class 1
+    
+    # Calculate the percentage from the probability
+    percentage_success = success_prob * 100
+
+    # Format the result 
+    new_result = percentage_success
+
+
+    # Get the probability of class 1
+    unsuccess_prob = predicted_probabilities[0][1]  # Probability of Class 1
+    
+    # Calculate the percentage from the probability
+    percentage_unsuccess = unsuccess_prob * 100
+
+    lfu_result = percentage_unsuccess
+
+    
+
+    # Store the new data and result in the database
+    user_input_dict['patientId'] = patient_id
+    user_input_dict['resultMessage'] = new_result
+    user_input_dict['date'] = dt.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+    for key in user_input_dict.keys():
+        if type(user_input_dict[key]) == list:
+            user_input_dict[key] = user_input_dict[key][0]
+
+    print(user_input_dict)
+
+    main_data_ref = db.collection("patient-data").add(user_input_dict)
+    docref = db.collection("patients").document(str(patient_id))
+    docref.set({
+        'FollowupDone_Count': user_input_dict['FollowupDone_Count'], 
+        'Age': user_input_dict['Age'], 
+        'Gender': user_input_dict['Gender']
+    })
+    # main_data_ref.set(user_input_dict)
+    # main_data_ref.update({'resultMessage': new_result})
+
+    # # Update cache
+    # cache[patient_id] = new_result
+
+    return render_template('result.html', patient_id=patient_id, new_result = new_result, lfu_score=lfu_result)
+
 if __name__ == '__main__':
-    app.run( host='0.0.0.0', port=80, debug=True)   
-#     if existing_data.exists:
-#         # Patient ID exists, retrieve the existing data
-#         existing_data = existing_data.to_dict()
-
-#         # Compare the existing result with the new result
-#         existing_result = existing_data.get('resultMessage', '')
-#         new_result = '70%'  # Replace this with your actual calculation
-
-#         improvement = False
-#         if new_result > existing_result:
-#             improvement = True
-
-#         # Update the database with new data and result
-#         main_data_ref = db.collection("patient-data").document(str(patient_id))
-#         data = dict(request.form)
-#         del data['patientId']
-#         main_data_ref.set(data)
-
-#         # Update the result message and improvement status
-#         main_data_ref.update({'resultMessage': new_result, 'improvement': improvement})
-
-#         return f'<h1>Result</h1><p>Previous Result: {existing_result}, New Result: {new_result}, Improvement: {improvement}</p>'
-
-#     else:
-#         # Patient ID doesn't exist, create a new entry in the database
-#         patient_id_ref.set({'patientId': patient_id})
-
-#         # Your existing code for saving new data and predicting result goes here
-
-#         return f'<h1>Result</h1><p>New patient ID, data saved.</p>'
-#     # return render_template('result.html', probability=probability_of_class_1, percentage=percentage)
-#     # return render_template('result.html', probability=0.3, percentage=10)
-
-
-# # @app.route('/', methods=['GET'])
-# # def home():
-# #    print("SAIRAM from index.html")
-# #    return render_template('index.html')
-
-# # if __name__ == '__main__':
-# #  app.run(host='127.0.0.1', port=8001)
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-
+    app.run(host='0.0.0.0', port=80, debug=True)

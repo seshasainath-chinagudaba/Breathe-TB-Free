@@ -108,7 +108,7 @@ $(document).ready(() => {
                 console.log(doc);
                 row.innerHTML = `
                     <td>${det.date}</td>
-                    <td><button type="button" id="show_${doc.id}">Show</button></td>
+                    <td><button type="button" class="btn btn-primary" id="show_${doc.id}">Show</button></td>
                 `
                 tableBody.appendChild(row);
 

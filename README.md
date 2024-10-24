@@ -1,5 +1,3 @@
-Sure! Here’s a simpler, more approachable version of the README, written in a more conversational, "human" language:
-
 ---
 
 # Breathe-TB-Free: A Tool to Help Predict Tuberculosis Outcomes
@@ -94,12 +92,4 @@ If you want to contribute to this project, here’s how:
 2. Create a new branch for your changes.
 3. Submit a pull request explaining your updates or improvements.
 
-We appreciate contributions, whether they’re bug fixes, new features, or documentation updates!
 
-## License
-
-This project is licensed under the MIT License, which means it’s free for anyone to use and modify.
-
----
-
-This version explains everything in simpler, more relatable language while still covering all the important details. Let me know if you’d like any further changes!
